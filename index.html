@@ -1,1 +1,519 @@
 
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ecotrama — do resíduo urbano à peça única</title>
+  <meta name="description" content="Ecotrama transforma resíduos têxteis rastreados em São Paulo em peças autorais, personalizáveis e de baixo impacto." />
+
+  <!-- Open Graph (preview ao compartilhar) -->
+  <meta property="og:title" content="Ecotrama — do resíduo urbano à peça única" />
+  <meta property="og:description" content="Moda autoral a partir de resíduos têxteis rastreados em São Paulo. Peças únicas, personalizáveis, economia circular." />
+  <meta property="og:type" content="website" />
+  <!-- TROQUE pela sua imagem (depois que você fizer upload no repo) -->
+  <meta property="og:image" content="hero.jpg" />
+
+  <style>
+    :root{
+      --bg:#070a08;
+      --panel:#0e1310;
+      --panel2:#0b100d;
+      --text:#eaf3ee;
+      --muted:#b8c7be;
+      --line:rgba(255,255,255,.10);
+      --accent:#57d08a;
+      --accent2:#8be6b3;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(87,208,138,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 0%, rgba(139,230,179,.12), transparent 55%),
+        radial-gradient(1000px 700px at 20% 120%, rgba(87,208,138,.10), transparent 60%),
+        var(--bg);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px;}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,8,.62);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0; gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.3px;
+    }
+    .dot{
+      width:11px; height:11px; border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 8px rgba(87,208,138,.12);
+    }
+    .menu{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
+    .menu a{
+      text-decoration:none; color:var(--muted);
+      font-size:14px; padding:8px 10px; border-radius:999px;
+    }
+    .menu a:hover{background: rgba(255,255,255,.06); color:var(--text)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      text-decoration:none;
+      font-weight:750;
+      font-size:14px;
+      background: rgba(255,255,255,.06);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22)}
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#06110b;
+      border:none;
+      box-shadow: 0 10px 30px rgba(87,208,138,.22);
+    }
+    .btn.primary:hover{filter:saturate(1.05) brightness(1.02)}
+    .hero{
+      padding:54px 0 26px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr;}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.09);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .hero h1{
+      font-size: clamp(32px, 4.2vw, 56px);
+      line-height:1.05;
+      margin:0 0 12px;
+      letter-spacing:-.8px;
+    }
+    .kicker{
+      font-size:12px; letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:10px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .kline{
+      height:1px; flex:1;
+      background: linear-gradient(90deg, rgba(87,208,138,.55), rgba(255,255,255,0));
+      border-radius:999px;
+    }
+    .lead{
+      color:var(--muted);
+      font-size: clamp(16px, 1.5vw, 18px);
+      margin:0 0 14px;
+      max-width: 68ch;
+    }
+    .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    .tag{
+      font-size:12px; padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+    }
+    .hero-media{
+      padding:0;
+      overflow:hidden;
+      position:relative;
+      min-height: 360px;
+    }
+    .hero-media::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(500px 300px at 30% 20%, rgba(87,208,138,.22), transparent 60%),
+        radial-gradient(600px 350px at 70% 40%, rgba(139,230,179,.14), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+    }
+    .hero-media img{
+      width:100%; height:100%;
+      object-fit:cover;
+      opacity:.92;
+      display:block;
+      mix-blend-mode: screen;
+      filter: contrast(1.05) saturate(1.05);
+    }
+    .media-overlay{
+      position:absolute; inset:0;
+      padding:16px;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      background: linear-gradient(0deg, rgba(7,10,8,.80), rgba(7,10,8,.15) 60%, rgba(7,10,8,0));
+    }
+    .statrow{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:10px;
+    }
+    @media (max-width: 520px){
+      .statrow{grid-template-columns:1fr;}
+    }
+    .stat{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .stat b{display:block; font-size:14px}
+    .stat span{color:var(--muted); font-size:12px}
+    section{padding:26px 0;}
+    h2{
+      margin:0 0 10px;
+      font-size: clamp(22px, 2.2vw, 32px);
+      letter-spacing:-.4px;
+    }
+    p{margin:0 0 12px}
+    .muted{color:var(--muted)}
+    .grid{display:grid; gap:14px;}
+    .grid.cols-2{grid-template-columns:repeat(2, 1fr);}
+    .grid.cols-3{grid-template-columns:repeat(3, 1fr);}
+    @media (max-width: 980px){ .grid.cols-2, .grid.cols-3{grid-template-columns:1fr;} }
+    .list{
+      list-style:none; padding:0; margin:10px 0 0;
+      display:grid; gap:10px;
+    }
+    .list li{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.03);
+    }
+    .divider{
+      height:1px; background: rgba(255,255,255,.08);
+      margin: 20px 0;
+    }
+    .footer{
+      padding:34px 0 44px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      font-size:14px;
+    }
+    .tiny{font-size:12px; color:var(--muted)}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; color:var(--muted);
+      border:1px solid rgba(255,255,255,.10);
+      padding:6px 10px; border-radius:999px;
+      background: rgba(255,255,255,.03);
+    }
+    .product{
+      overflow:hidden;
+      padding:0;
+    }
+    .product .pimg{
+      height: 190px;
+      background:
+        radial-gradient(500px 240px at 30% 30%, rgba(87,208,138,.20), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border-bottom:1px solid rgba(255,255,255,.08);
+      position:relative;
+    }
+    .product img{
+      width:100%; height:100%;
+      object-fit:cover; display:block;
+      opacity:.92;
+    }
+    .product .pbody{padding:16px 16px 18px;}
+    .price{
+      display:flex; align-items:center; justify-content:space-between;
+      margin-top:10px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand"><span class="dot"></span> Ecotrama</div>
+      <nav class="menu">
+        <a href="#sobre">Sobre</a>
+        <a href="#colecao">Coleções</a>
+        <a href="#pilares">Pilares</a>
+        <a href="#processo">Processo</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="card">
+          <div class="kicker">Do resíduo urbano à peça única <span class="kline"></span></div>
+          <h1>Moda autoral a partir de resíduos têxteis rastreados em São Paulo.</h1>
+
+          <p class="lead">
+            Em São Paulo, toneladas de resíduos têxteis são descartadas todos os dias. Tecidos sem valor comercial, histórias interrompidas, materiais invisibilizados.
+            A Ecotrama nasce desse percurso urbano: cada matéria-prima é coletada localmente, catalogada e rastreada — respeitando sua origem e trajetória.
+          </p>
+
+          <p class="muted">
+            A criação parte do que existe: cores, texturas e volumes disponíveis em cada período definem coleções únicas que nunca se repetem.
+            As peças podem ser personalizadas conforme essa disponibilidade, conectando cada produto ao momento em que foi criado.
+          </p>
+
+          <div class="actions">
+            <!-- TROQUE pelo seu link real do Google Forms -->
+            <a class="btn primary" href="https://forms.gle/COLE_AQUI_SEU_LINK" target="_blank" rel="noreferrer">Participar do formulário</a>
+            <a class="btn" href="#colecao">Ver coleções</a>
+          </div>
+
+          <div class="tags">
+            <span class="tag">Upcycling</span>
+            <span class="tag">Rastreabilidade</span>
+            <span class="tag">Ecodesign</span>
+            <span class="tag">Peças únicas</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="statrow">
+            <div class="stat"><b>Curadoria por disponibilidade</b><span>Cada coleção nasce do resíduo real do período.</span></div>
+            <div class="stat"><b>Personalização modular</b><span>Ajustes e variações conforme materiais.</span></div>
+            <div class="stat"><b>Economia circular</b><span>Reparo, reuso e retorno à rede.</span></div>
+          </div>
+        </div>
+
+        <!-- HERO IMAGE / MEDIA -->
+        <div class="card hero-media">
+          <!-- Troque "hero.jpg" por uma imagem sua depois que fizer upload no repo -->
+          <img src="hero.jpg" alt="Ecotrama — textura têxtil e materiais reaproveitados" onerror="this.style.display='none'">
+          <div class="media-overlay">
+            <span class="pill">Transparência ecológica • EN / ES / PT / FR</span>
+            <div style="margin-top:10px" class="tiny">
+              Dica: envie uma foto vertical bonita (tecidos, costura, detalhes). Nomeie como <b>hero.jpg</b>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+      <div class="wrap">
+        <div class="grid cols-2">
+          <div class="card">
+            <h2>Sobre a Ecotrama</h2>
+            <p class="muted">
+              Mais do que reutilizar tecidos, a marca constrói narrativas: do descarte à criação, da cidade ao corpo, do resíduo à identidade.
+              Cada peça carrega vestígios do seu percurso e assume a estética do que é encontrado — com intenção, cuidado e acabamento.
+            </p>
+            <ul class="list">
+              <li><b>O que fazemos</b><br><span class="muted">transformamos resíduos têxteis em roupas e objetos autorais.</span></li>
+              <li><b>Como fazemos</b><br><span class="muted">curadoria, desmontagem, modelagem e construção artesanal.</span></li>
+              <li><b>Por que importa</b><br><span class="muted">reduz descarte e valoriza material e mão de obra.</span></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>Proposta de valor</h2>
+            <p class="muted">
+              A Ecotrama opera com rastreabilidade e circularidade: o design nasce do material disponível, reduz desperdício e amplia o valor do que seria descartado.
+            </p>
+            <div class="divider"></div>
+            <p class="muted">
+              Se você está construindo isso como projeto acadêmico/portfólio, essa narrativa é forte porque junta:
+              <b>pesquisa de campo + sistema de coleta + design modular + impacto</b>.
+            </p>
+            <div class="actions">
+              <a class="btn" href="#processo">Ver processo</a>
+              <a class="btn" href="#pilares">Ver pilares</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLEÇÕES -->
+    <section id="colecao">
+      <div class="wrap">
+        <h2>Coleções</h2>
+        <p class="muted">Peças autorais com possibilidade de personalização conforme disponibilidade de materiais.</p>
+
+        <div class="grid cols-3" style="margin-top:14px">
+          <article class="card product">
+            <div class="pimg">
+              <!-- Troque por imagem: denim.jpg -->
+              <img src="denim.jpg" alt="Reclaimed Denim" onerror="this.style.display='none'">
+            </div>
+            <div class="pbody">
+              <div class="kicker">Reclaimed Denim <span class="kline"></span></div>
+              <p class="muted">Construção a partir de jeans desconstruído. Estrutura, recortes e acabamentos variam por lote.</p>
+              <div class="price">
+                <span class="badge">Peça única</span>
+                <span>Personalizável</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card product">
+            <div class="pimg">
+              <!-- Troque por imagem: knit.jpg -->
+              <img src="knit.jpg" alt="Hemp Knitwear" onerror="this.style.display='none'">
+            </div>
+            <div class="pbody">
+              <div class="kicker">Knitwear & Fios <span class="kline"></span></div>
+              <p class="muted">Fios reaproveitados e excedentes de malha. Remodelagem em novas silhuetas com conforto e textura.</p>
+              <div class="price">
+                <span class="badge">Baixo desperdício</span>
+                <span>Reconfigurável</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card product">
+            <div class="pimg">
+              <!-- Troque por imagem: canvas.jpg -->
+              <img src="canvas.jpg" alt="Archival Canvas" onerror="this.style.display='none'">
+            </div>
+            <div class="pbody">
+              <div class="kicker">Archival Canvas <span class="kline"></span></div>
+              <p class="muted">Lonas e tecidos de arquivo viram peças funcionais. Durável, com caráter e acabamento artesanal.</p>
+              <div class="price">
+                <span class="badge">Alta durabilidade</span>
+                <span>Feito à mão</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <b>Quer participar da pesquisa / interesse de compra?</b>
+          <p class="muted" style="margin-top:6px">Responda o formulário: isso fortalece o projeto (e te ajuda a validar a proposta rápido).</p>
+          <div class="actions">
+            <a class="btn primary" href="https://forms.gle/COLE_AQUI_SEU_LINK" target="_blank" rel="noreferrer">Abrir formulário</a>
+            <a class="btn" href="#contato">Falar com a Ecotrama</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PILARES -->
+    <section id="pilares">
+      <div class="wrap">
+        <h2>Pilares</h2>
+        <p class="muted">Um sistema que conecta material, design, transparência e circularidade.</p>
+
+        <div class="grid cols-2" style="margin-top:14px">
+          <div class="card">
+            <h3 style="margin:0 0 8px">Sourcing de Upcycling Circular</h3>
+            <p class="muted">Reintrodução de têxteis esquecidos com técnicas artesanais que minimizam desperdício e ampliam valor.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin:0 0 8px">Arquitetura da Personalização</h3>
+            <p class="muted">Sistema modular para ajustar cores, texturas, recortes e caimento conforme materiais existentes.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin:0 0 8px">Rastreabilidade e Alcance</h3>
+            <p class="muted">Documentação do percurso dos materiais com narrativa transparente (EN/ES/PT/FR).</p>
+          </div>
+          <div class="card">
+            <h3 style="margin:0 0 8px">Ecossistema de Ecodesign</h3>
+            <p class="muted">Estratégias de durabilidade: reparo, redesign e reciclagem para retorno à rede Ecotrama.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section id="processo">
+      <div class="wrap">
+        <h2>Processo</h2>
+        <p class="muted">Do resíduo ao produto: um fluxo simples, replicável e documentado.</p>
+
+        <div class="grid cols-3" style="margin-top:14px">
+          <div class="card">
+            <div class="kicker">01 — Coleta <span class="kline"></span></div>
+            <p class="muted">Mapeamento de pontos, coleta urbana e triagem do material por tipo, estado e potencial de uso.</p>
+          </div>
+          <div class="card">
+            <div class="kicker">02 — Curadoria <span class="kline"></span></div>
+            <p class="muted">Catalogação e rastreio: origem, lote, características e decisões de design baseadas no material real.</p>
+          </div>
+          <div class="card">
+            <div class="kicker">03 — Construção <span class="kline"></span></div>
+            <p class="muted">Desmontagem, modelagem e costura. Peças únicas e personalizáveis com acabamento autoral.</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <b>Você quer que eu deixe isso ainda mais “apresentável”?</b>
+          <p class="muted" style="margin-top:6px">
+            Posso adaptar a linguagem para edital/portfólio e incluir uma seção “Resultados / Pesquisa de campo” (USP, ecoponto, entrevistas)
+            com 3–6 fotos e legendas — fica muito forte.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <div class="wrap">
+        <div class="card">
+          <h2>Contato</h2>
+          <p class="muted">Deixe seu interesse ou mande uma mensagem. (Troque os links abaixo pelos seus.)</p>
+
+          <div class="actions">
+            <a class="btn primary" href="https://forms.gle/COLE_AQUI_SEU_LINK" target="_blank" rel="noreferrer">Formulário</a>
+            <!-- Troque pelo seu e-mail -->
+            <a class="btn" href="mailto:educatttional@gmail.com">E-mail</a>
+            <!-- Troque pelo seu Instagram -->
+            <a class="btn" href="https://instagram.com/SEU_INSTAGRAM" target="_blank" rel="noreferrer">Instagram</a>
+          </div>
+
+          <p class="tiny" style="margin-top:12px">
+            Dica: quando você subir imagens no GitHub, use nomes simples (hero.jpg, denim.jpg, knit.jpg, canvas.jpg).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap footer">
+      <div><b>Ecotrama</b> — ecodesign artesanal & upcycling urbano.</div>
+      <div class="tiny">© <span id="year"></span> • Feito para rodar leve no GitHub Pages.</div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
